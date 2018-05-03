@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{%  extends "base.html" %}
+
+{% block content %}
+<!-- needs more frontend-->
+<h1> Create Stats </h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+{% endblock %}
