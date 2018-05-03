@@ -28,22 +28,17 @@ def stats_list(request):
     stats = stats.order_by(order)
     total_rent = Stats.objects.all().aggregate(total=Sum('current_rent'))
 
-    #num_masts = Stats.objects.filter(tenant_name='O2 (UK) Ltd').count()
-
-    #print("it works look > ",num_masts)
-
     fieldname = 'tenant_name'
-    num_masts = Stats.objects.values(fieldname).annotate(the_count=Count(fieldname))
-
-    print("it works look > ", num_masts)
+    num_masts = stats.values(fieldname).annotate(the_count=Count(fieldname))
+    my_tenant_dict = {}
+    for i in num_masts:
+        my_tenant_dict[str(i['tenant_name'])] = i['the_count']
+    print(str(my_tenant_dict))
 
     return render(request, 'mobile/stats_list.html', {
         'stats': stats[:5],
         'total_rent': total_rent['total']
     })
-
-def create_dict(request):
-    stats = Stats.objects.all()
 
 
 class CreateStatView(CreateView):

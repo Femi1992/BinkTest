@@ -2,7 +2,6 @@ from django.db import models
 from django.core.urlresolvers import reverse
 
 # Create your models here.
-help = 1
 
 class Stats(models.Model):
 
@@ -20,6 +19,9 @@ class Stats(models.Model):
     #lease_end = models.CharField(input_formats = settings.DATE_INPUT_FORMATS)
     lease_years = models.IntegerField()
     current_rent = models.DecimalField(max_digits=7, decimal_places=2)
+
+    def __str__(self):
+        return self.tenant_name
 
     class Meta:
         ordering = ['current_rent']
