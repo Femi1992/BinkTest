@@ -37,7 +37,7 @@ def stats_list(request):
 
     return render(request, 'mobile/stats_list.html', {
         'stats': stats[:5],
-        'total_rent': total_rent['total']
+        'total_rent': total_rent['total'],
     })
 
 
